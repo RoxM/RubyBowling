@@ -13,15 +13,7 @@ class Bowling
   	result = 0
 	@frames.each do
 		result += calculateScore
-		
-		if isStrike
-		    @rollIndex+=1
-		elsif isSpare	
-			@rollIndex+=2
-		else
-			@rollIndex+=2
-		end
-		
+		moveRollIndex
 	end
     return result
   end
@@ -44,5 +36,9 @@ class Bowling
   
   def framePoints
   	return @rolls[@rollIndex]+@rolls[@rollIndex+1]
+  end
+  
+  def moveRollIndex
+  	isStrike ? @rollIndex+=1 : @rollIndex+=2
   end
 end
