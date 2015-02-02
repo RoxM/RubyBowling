@@ -11,13 +11,12 @@ class Bowling
 
   def score
 	result = 0
-
 	@frames.each do |frame|
 		if isStrike
-		    result += 10 + @rolls[@rollIndex + 1]+ @rolls[@rollIndex + 2]
+		    result += 10 + bonusPoints
 		    @rollIndex+=1
 		elsif isSpare
-			result += 10 + @rolls[@rollIndex + 2]	
+			result += 10 + bonusPoints	
 			@rollIndex+=2
 		else
 			result += @rolls[@rollIndex]+@rolls[@rollIndex+1]
@@ -34,6 +33,10 @@ class Bowling
   
   def isSpare
   	return  @rolls[@rollIndex] + @rolls[@rollIndex + 1] == 10 ? true : false
+  end
+  
+  def bonusPoints
+  	return isStrike ? + @rolls[@rollIndex + 1]+ @rolls[@rollIndex + 2] : @rolls[@rollIndex + 2]
   end
   
 end
