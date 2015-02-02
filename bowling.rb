@@ -10,9 +10,9 @@ class Bowling
   end
 
   def score
-	result = 0
+  	result = 0
 	@frames.each do
-		result += isStrike || isSpare ? 10 + bonusPoints : framePoints
+		result += calculateScore
 		
 		if isStrike
 		    @rollIndex+=1
@@ -24,6 +24,10 @@ class Bowling
 		
 	end
     return result
+  end
+  
+  def calculateScore
+  	return isStrike || isSpare ? 10 + bonusPoints : framePoints
   end
   
   def isStrike
